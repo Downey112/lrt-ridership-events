@@ -1,0 +1,49 @@
+table line_recovery
+	lineageTag: 1ef9c494-abcf-5f59-9f5d-12610dd7289b
+
+	measure 'Recovery KJ' = CALCULATE ( MAX ( line_recovery[recovery] ), line_recovery[line] = "rail_lrt_kj" )
+		formatString: 0%
+		displayFolder: KPI
+		lineageTag: 799d8d96-23df-5b86-b1da-fef709ecd5bd
+
+	measure 'Recovery Ampang' = CALCULATE ( MAX ( line_recovery[recovery] ), line_recovery[line] = "rail_lrt_ampang" )
+		formatString: 0%
+		displayFolder: KPI
+		lineageTag: f7333b7b-937e-5305-b348-7eed2f717daf
+
+	measure 'Recovery MRT' = CALCULATE ( MAX ( line_recovery[recovery] ), line_recovery[line] = "rail_mrt_kajang" )
+		formatString: 0%
+		displayFolder: KPI
+		lineageTag: 44549c12-bb64-54b6-86c6-14ace4ba16da
+
+	measure 'Recovery Monorail' = CALCULATE ( MAX ( line_recovery[recovery] ), line_recovery[line] = "rail_monorail" )
+		formatString: 0%
+		displayFolder: KPI
+		lineageTag: 2f105ac8-33d8-5703-b210-6fe8531d1807
+
+	column line
+		dataType: string
+		isHidden
+		lineageTag: fea9431d-4ab7-5bce-9136-b9f4e4c5e337
+		summarizeBy: none
+		sourceColumn: line
+
+	column recovery
+		dataType: double
+		formatString: 0%
+		lineageTag: 001d3446-6725-5040-b049-4c9bc6885ea5
+		summarizeBy: none
+		sourceColumn: recovery
+
+	partition line_recovery = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\line_recovery.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+				        {"line", type text},
+				        {"recovery", type number}
+				    }, "en-US")
+				in
+				    Typed

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "LRTRidership"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "464c1285-8684-5b44-852c-01584f7a21c8"
+  }
+}

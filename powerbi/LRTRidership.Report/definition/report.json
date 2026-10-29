@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "themeCollection": {
+    "customTheme": {
+      "name": "LRTRidership.json",
+      "reportVersionAtImport": {
+        "visual": "2.3.0",
+        "report": "3.0.0",
+        "page": "2.0.0"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "LRTRidership.json",
+          "path": "LRTRidership.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "hero_lrt.jpg",
+          "path": "hero_lrt.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "strip_lrt.jpg",
+          "path": "strip_lrt.jpg",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useEnhancedTooltips": true
+  }
+}

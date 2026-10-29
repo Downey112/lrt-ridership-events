@@ -1,0 +1,58 @@
+table recovery_monthly
+	lineageTag: 2a84a538-1400-5fd0-aff2-78eb9fcb772b
+
+	measure 'Recovery vs 2019' = AVERAGE ( recovery_monthly[recovery] )
+		formatString: 0%
+		displayFolder: Base
+		lineageTag: 1d63a579-bf78-5618-ae74-1a932b94fe79
+
+	column month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 45097209-f3e9-539d-8b2d-24112c4488df
+		summarizeBy: none
+		sourceColumn: month
+
+	column line
+		dataType: string
+		isHidden
+		lineageTag: 295bf131-f7b2-5c8d-9dde-ed3323221141
+		summarizeBy: none
+		sourceColumn: line
+
+	column mean_daily
+		dataType: double
+		formatString: #,0
+		lineageTag: 993f3314-e57e-5899-a6fe-bc4cd8c4bf9d
+		summarizeBy: none
+		sourceColumn: mean_daily
+
+	column mean_2019_same_month
+		dataType: double
+		formatString: #,0
+		lineageTag: cd1e8df2-7c8f-5523-bfba-edbebf2d7b5b
+		summarizeBy: none
+		sourceColumn: mean_2019_same_month
+
+	column recovery
+		dataType: double
+		formatString: 0%
+		lineageTag: e21f84b4-6c2c-55c7-8170-2f98697d4b96
+		summarizeBy: none
+		sourceColumn: recovery
+
+	partition recovery_monthly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\recovery_monthly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+				        {"month", type date},
+				        {"line", type text},
+				        {"mean_daily", type number},
+				        {"mean_2019_same_month", type number},
+				        {"recovery", type number}
+				    }, "en-US")
+				in
+				    Typed

@@ -1,0 +1,209 @@
+week,line,line_name,mean_daily
+2021-07-05,rail_lrt_ampang,LRT Ampang/Sri Petaling,24909.714285714286
+2021-07-05,rail_lrt_kj,LRT Kelana Jaya,27414.14285714286
+2021-07-05,rail_mrt_kajang,MRT Kajang,18790.428571428572
+2021-07-05,rail_monorail,KL Monorail,4249.571428571428
+2021-07-12,rail_lrt_ampang,LRT Ampang/Sri Petaling,26024.285714285714
+2021-07-12,rail_lrt_kj,LRT Kelana Jaya,28372.428571428572
+2021-07-12,rail_mrt_kajang,MRT Kajang,19115.0
+2021-07-12,rail_monorail,KL Monorail,4360.714285714285
+2021-07-19,rail_lrt_ampang,LRT Ampang/Sri Petaling,25467.571428571428
+2021-07-19,rail_lrt_kj,LRT Kelana Jaya,27222.0
+2021-07-19,rail_mrt_kajang,MRT Kajang,18800.714285714286
+2021-07-19,rail_monorail,KL Monorail,4279.714285714285
+2021-07-26,rail_lrt_ampang,LRT Ampang/Sri Petaling,30309.714285714286
+2021-07-26,rail_lrt_kj,LRT Kelana Jaya,32152.85714285714
+2021-07-26,rail_mrt_kajang,MRT Kajang,22252.285714285714
+2021-07-26,rail_monorail,KL Monorail,4809.714285714285
+2021-08-02,rail_lrt_ampang,LRT Ampang/Sri Petaling,29364.0
+2021-08-02,rail_lrt_kj,LRT Kelana Jaya,31926.285714285714
+2021-08-02,rail_mrt_kajang,MRT Kajang,22480.0
+2021-08-02,rail_monorail,KL Monorail,4926.714285714285
+2021-08-09,rail_lrt_ampang,LRT Ampang/Sri Petaling,30863.714285714286
+2021-08-09,rail_lrt_kj,LRT Kelana Jaya,31401.0
+2021-08-09,rail_mrt_kajang,MRT Kajang,21751.285714285714
+2021-08-09,rail_monorail,KL Monorail,5149.428571428572
+2021-08-16,rail_lrt_ampang,LRT Ampang/Sri Petaling,38496.28571428572
+2021-08-16,rail_lrt_kj,LRT Kelana Jaya,38695.57142857143
+2021-08-16,rail_mrt_kajang,MRT Kajang,23734.85714285714
+2021-08-16,rail_monorail,KL Monorail,6537.714285714285
+2021-08-23,rail_lrt_ampang,LRT Ampang/Sri Petaling,39603.42857142857
+2021-08-23,rail_lrt_kj,LRT Kelana Jaya,41031.142857142855
+2021-08-23,rail_mrt_kajang,MRT Kajang,30349.285714285714
+2021-08-23,rail_monorail,KL Monorail,6632.285714285715
+2021-08-30,rail_lrt_ampang,LRT Ampang/Sri Petaling,41910.857142857145
+2021-08-30,rail_lrt_kj,LRT Kelana Jaya,42059.0
+2021-08-30,rail_mrt_kajang,MRT Kajang,32415.85714285714
+2021-08-30,rail_monorail,KL Monorail,7193.0
+2021-09-06,rail_lrt_ampang,LRT Ampang/Sri Petaling,50131.142857142855
+2021-09-06,rail_lrt_kj,LRT Kelana Jaya,50689.71428571428
+2021-09-06,rail_mrt_kajang,MRT Kajang,39712.42857142857
+2021-09-06,rail_monorail,KL Monorail,8647.0
+2021-09-13,rail_lrt_ampang,LRT Ampang/Sri Petaling,49252.71428571428
+2021-09-13,rail_lrt_kj,LRT Kelana Jaya,51402.57142857143
+2021-09-13,rail_mrt_kajang,MRT Kajang,41687.42857142857
+2021-09-13,rail_monorail,KL Monorail,9072.0
+2021-09-20,rail_lrt_ampang,LRT Ampang/Sri Petaling,55512.28571428572
+2021-09-20,rail_lrt_kj,LRT Kelana Jaya,59851.0
+2021-09-20,rail_mrt_kajang,MRT Kajang,47798.0
+2021-09-20,rail_monorail,KL Monorail,9937.57142857143
+2021-09-27,rail_lrt_ampang,LRT Ampang/Sri Petaling,59588.857142857145
+2021-09-27,rail_lrt_kj,LRT Kelana Jaya,65488.857142857145
+2021-09-27,rail_mrt_kajang,MRT Kajang,53113.28571428572
+2021-09-27,rail_monorail,KL Monorail,11503.285714285714
+2021-10-04,rail_lrt_ampang,LRT Ampang/Sri Petaling,64561.0
+2021-10-04,rail_lrt_kj,LRT Kelana Jaya,73629.71428571429
+2021-10-04,rail_mrt_kajang,MRT Kajang,59591.0
+2021-10-04,rail_monorail,KL Monorail,12690.57142857143
+2021-10-11,rail_lrt_ampang,LRT Ampang/Sri Petaling,66598.14285714286
+2021-10-11,rail_lrt_kj,LRT Kelana Jaya,76932.71428571429
+2021-10-11,rail_mrt_kajang,MRT Kajang,60659.71428571428
+2021-10-11,rail_monorail,KL Monorail,13146.285714285714
+2021-10-18,rail_lrt_ampang,LRT Ampang/Sri Petaling,64099.42857142857
+2021-10-18,rail_lrt_kj,LRT Kelana Jaya,74492.85714285714
+2021-10-18,rail_mrt_kajang,MRT Kajang,58641.71428571428
+2021-10-18,rail_monorail,KL Monorail,12910.285714285714
+2021-10-25,rail_lrt_ampang,LRT Ampang/Sri Petaling,72048.14285714286
+2021-10-25,rail_lrt_kj,LRT Kelana Jaya,86152.57142857143
+2021-10-25,rail_mrt_kajang,MRT Kajang,66640.28571428571
+2021-10-25,rail_monorail,KL Monorail,14239.42857142857
+2021-11-01,rail_lrt_ampang,LRT Ampang/Sri Petaling,72431.42857142857
+2021-11-01,rail_lrt_kj,LRT Kelana Jaya,87455.28571428571
+2021-11-01,rail_mrt_kajang,MRT Kajang,68345.28571428571
+2021-11-01,rail_monorail,KL Monorail,16928.571428571428
+2021-11-08,rail_lrt_ampang,LRT Ampang/Sri Petaling,79800.28571428571
+2021-11-08,rail_lrt_kj,LRT Kelana Jaya,98155.0
+2021-11-08,rail_mrt_kajang,MRT Kajang,75423.85714285714
+2021-11-08,rail_monorail,KL Monorail,16255.142857142857
+2021-11-15,rail_lrt_ampang,LRT Ampang/Sri Petaling,80626.71428571429
+2021-11-15,rail_lrt_kj,LRT Kelana Jaya,100768.71428571429
+2021-11-15,rail_mrt_kajang,MRT Kajang,77451.42857142857
+2021-11-15,rail_monorail,KL Monorail,16305.42857142857
+2021-11-22,rail_lrt_ampang,LRT Ampang/Sri Petaling,81900.85714285714
+2021-11-22,rail_lrt_kj,LRT Kelana Jaya,103838.57142857143
+2021-11-22,rail_mrt_kajang,MRT Kajang,79654.42857142857
+2021-11-22,rail_monorail,KL Monorail,17143.285714285714
+2021-11-29,rail_lrt_ampang,LRT Ampang/Sri Petaling,83499.71428571429
+2021-11-29,rail_lrt_kj,LRT Kelana Jaya,101516.85714285714
+2021-11-29,rail_mrt_kajang,MRT Kajang,79192.71428571429
+2021-11-29,rail_monorail,KL Monorail,17308.85714285714
+2021-12-06,rail_lrt_ampang,LRT Ampang/Sri Petaling,89259.85714285714
+2021-12-06,rail_lrt_kj,LRT Kelana Jaya,110657.14285714286
+2021-12-06,rail_mrt_kajang,MRT Kajang,86392.57142857143
+2021-12-06,rail_monorail,KL Monorail,18956.0
+2021-12-13,rail_lrt_ampang,LRT Ampang/Sri Petaling,88335.85714285714
+2021-12-13,rail_lrt_kj,LRT Kelana Jaya,108944.71428571429
+2021-12-13,rail_mrt_kajang,MRT Kajang,87242.14285714286
+2021-12-13,rail_monorail,KL Monorail,19043.14285714286
+2021-12-20,rail_lrt_ampang,LRT Ampang/Sri Petaling,85176.71428571429
+2021-12-20,rail_lrt_kj,LRT Kelana Jaya,103918.85714285714
+2021-12-20,rail_mrt_kajang,MRT Kajang,86584.42857142857
+2021-12-20,rail_monorail,KL Monorail,19645.14285714286
+2021-12-27,rail_lrt_ampang,LRT Ampang/Sri Petaling,86396.85714285714
+2021-12-27,rail_lrt_kj,LRT Kelana Jaya,106489.14285714286
+2021-12-27,rail_mrt_kajang,MRT Kajang,86779.57142857143
+2021-12-27,rail_monorail,KL Monorail,20351.85714285714
+2022-01-03,rail_lrt_ampang,LRT Ampang/Sri Petaling,92502.57142857143
+2022-01-03,rail_lrt_kj,LRT Kelana Jaya,115890.28571428571
+2022-01-03,rail_mrt_kajang,MRT Kajang,90484.0
+2022-01-03,rail_monorail,KL Monorail,19098.14285714286
+2022-01-10,rail_lrt_ampang,LRT Ampang/Sri Petaling,95229.14285714286
+2022-01-10,rail_lrt_kj,LRT Kelana Jaya,118928.57142857143
+2022-01-10,rail_mrt_kajang,MRT Kajang,92955.57142857143
+2022-01-10,rail_monorail,KL Monorail,18375.714285714286
+2022-01-17,rail_lrt_ampang,LRT Ampang/Sri Petaling,87271.71428571429
+2022-01-17,rail_lrt_kj,LRT Kelana Jaya,105538.0
+2022-01-17,rail_mrt_kajang,MRT Kajang,84462.85714285714
+2022-01-17,rail_monorail,KL Monorail,16742.428571428572
+2022-01-24,rail_lrt_ampang,LRT Ampang/Sri Petaling,98368.85714285714
+2022-01-24,rail_lrt_kj,LRT Kelana Jaya,119529.42857142857
+2022-01-24,rail_mrt_kajang,MRT Kajang,93055.28571428571
+2022-01-24,rail_monorail,KL Monorail,19193.285714285714
+2022-01-31,rail_lrt_ampang,LRT Ampang/Sri Petaling,63210.71428571428
+2022-01-31,rail_lrt_kj,LRT Kelana Jaya,75181.85714285714
+2022-01-31,rail_mrt_kajang,MRT Kajang,55750.28571428572
+2022-01-31,rail_monorail,KL Monorail,18261.0
+2022-02-07,rail_lrt_ampang,LRT Ampang/Sri Petaling,85082.85714285714
+2022-02-07,rail_lrt_kj,LRT Kelana Jaya,105000.14285714286
+2022-02-07,rail_mrt_kajang,MRT Kajang,79317.57142857143
+2022-02-07,rail_monorail,KL Monorail,16610.714285714286
+2022-02-14,rail_lrt_ampang,LRT Ampang/Sri Petaling,81881.71428571429
+2022-02-14,rail_lrt_kj,LRT Kelana Jaya,99229.57142857143
+2022-02-14,rail_mrt_kajang,MRT Kajang,75811.57142857143
+2022-02-14,rail_monorail,KL Monorail,15971.142857142857
+2022-02-21,rail_lrt_ampang,LRT Ampang/Sri Petaling,79246.57142857143
+2022-02-21,rail_lrt_kj,LRT Kelana Jaya,96346.71428571429
+2022-02-21,rail_mrt_kajang,MRT Kajang,73738.85714285714
+2022-02-21,rail_monorail,KL Monorail,15792.42857142857
+2022-02-28,rail_lrt_ampang,LRT Ampang/Sri Petaling,80344.57142857143
+2022-02-28,rail_lrt_kj,LRT Kelana Jaya,98565.71428571429
+2022-02-28,rail_mrt_kajang,MRT Kajang,74495.28571428571
+2022-02-28,rail_monorail,KL Monorail,16894.714285714286
+2022-03-07,rail_lrt_ampang,LRT Ampang/Sri Petaling,84240.85714285714
+2022-03-07,rail_lrt_kj,LRT Kelana Jaya,103525.57142857143
+2022-03-07,rail_mrt_kajang,MRT Kajang,78052.42857142857
+2022-03-07,rail_monorail,KL Monorail,18020.285714285714
+2022-03-14,rail_lrt_ampang,LRT Ampang/Sri Petaling,85317.85714285714
+2022-03-14,rail_lrt_kj,LRT Kelana Jaya,104544.28571428571
+2022-03-14,rail_mrt_kajang,MRT Kajang,79853.42857142857
+2022-03-14,rail_monorail,KL Monorail,18084.428571428572
+2022-03-21,rail_lrt_ampang,LRT Ampang/Sri Petaling,88911.0
+2022-03-21,rail_lrt_kj,LRT Kelana Jaya,110047.14285714286
+2022-03-21,rail_mrt_kajang,MRT Kajang,82025.57142857143
+2022-03-21,rail_monorail,KL Monorail,18249.714285714286
+2022-03-28,rail_lrt_ampang,LRT Ampang/Sri Petaling,94751.28571428571
+2022-03-28,rail_lrt_kj,LRT Kelana Jaya,116701.85714285714
+2022-03-28,rail_mrt_kajang,MRT Kajang,87158.0
+2022-03-28,rail_monorail,KL Monorail,20009.285714285714
+2022-04-04,rail_lrt_ampang,LRT Ampang/Sri Petaling,94233.71428571429
+2022-04-04,rail_lrt_kj,LRT Kelana Jaya,116778.42857142857
+2022-04-04,rail_mrt_kajang,MRT Kajang,84211.85714285714
+2022-04-04,rail_monorail,KL Monorail,17820.0
+2022-04-11,rail_lrt_ampang,LRT Ampang/Sri Petaling,102732.28571428571
+2022-04-11,rail_lrt_kj,LRT Kelana Jaya,126148.71428571429
+2022-04-11,rail_mrt_kajang,MRT Kajang,94816.85714285714
+2022-04-11,rail_monorail,KL Monorail,20183.14285714286
+2022-04-18,rail_lrt_ampang,LRT Ampang/Sri Petaling,113077.85714285714
+2022-04-18,rail_lrt_kj,LRT Kelana Jaya,127411.57142857143
+2022-04-18,rail_mrt_kajang,MRT Kajang,95819.14285714286
+2022-04-18,rail_monorail,KL Monorail,23623.714285714286
+2022-04-25,rail_lrt_ampang,LRT Ampang/Sri Petaling,128304.71428571429
+2022-04-25,rail_lrt_kj,LRT Kelana Jaya,145776.7142857143
+2022-04-25,rail_mrt_kajang,MRT Kajang,111084.42857142857
+2022-04-25,rail_monorail,KL Monorail,29156.571428571428
+2022-05-02,rail_lrt_ampang,LRT Ampang/Sri Petaling,79323.14285714286
+2022-05-02,rail_lrt_kj,LRT Kelana Jaya,95944.57142857143
+2022-05-02,rail_mrt_kajang,MRT Kajang,82604.14285714286
+2022-05-02,rail_monorail,KL Monorail,24575.14285714286
+2022-05-09,rail_lrt_ampang,LRT Ampang/Sri Petaling,115376.71428571429
+2022-05-09,rail_lrt_kj,LRT Kelana Jaya,152648.0
+2022-05-09,rail_mrt_kajang,MRT Kajang,115511.85714285714
+2022-05-09,rail_monorail,KL Monorail,24764.85714285714
+2022-05-16,rail_lrt_ampang,LRT Ampang/Sri Petaling,110032.57142857143
+2022-05-16,rail_lrt_kj,LRT Kelana Jaya,144369.42857142858
+2022-05-16,rail_mrt_kajang,MRT Kajang,111658.71428571429
+2022-05-16,rail_monorail,KL Monorail,23661.285714285714
+2022-05-23,rail_lrt_ampang,LRT Ampang/Sri Petaling,121230.28571428571
+2022-05-23,rail_lrt_kj,LRT Kelana Jaya,161842.0
+2022-05-23,rail_mrt_kajang,MRT Kajang,122455.85714285714
+2022-05-23,rail_monorail,KL Monorail,26255.428571428572
+2022-05-30,rail_lrt_ampang,LRT Ampang/Sri Petaling,131212.7142857143
+2022-05-30,rail_lrt_kj,LRT Kelana Jaya,171098.42857142858
+2022-05-30,rail_mrt_kajang,MRT Kajang,129788.71428571429
+2022-05-30,rail_monorail,KL Monorail,29197.14285714286
+2022-06-06,rail_lrt_ampang,LRT Ampang/Sri Petaling,144599.7142857143
+2022-06-06,rail_lrt_kj,LRT Kelana Jaya,164328.42857142858
+2022-06-06,rail_mrt_kajang,MRT Kajang,125721.57142857143
+2022-06-06,rail_monorail,KL Monorail,29372.85714285714
+2022-06-13,rail_lrt_ampang,LRT Ampang/Sri Petaling,138738.14285714287
+2022-06-13,rail_lrt_kj,LRT Kelana Jaya,177271.42857142858
+2022-06-13,rail_mrt_kajang,MRT Kajang,148119.14285714287
+2022-06-13,rail_monorail,KL Monorail,31438.0
+2022-06-20,rail_lrt_ampang,LRT Ampang/Sri Petaling,151008.2857142857
+2022-06-20,rail_lrt_kj,LRT Kelana Jaya,193319.57142857142
+2022-06-20,rail_mrt_kajang,MRT Kajang,169106.42857142858
+2022-06-20,rail_monorail,KL Monorail,38270.28571428572
+2022-06-27,rail_lrt_ampang,LRT Ampang/Sri Petaling,156895.57142857142
+2022-06-27,rail_lrt_kj,LRT Kelana Jaya,196393.7142857143
+2022-06-27,rail_mrt_kajang,MRT Kajang,173149.2857142857
+2022-06-27,rail_monorail,KL Monorail,39148.857142857145

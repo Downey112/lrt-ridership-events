@@ -1,0 +1,42 @@
+table my50_context
+	lineageTag: 20d92ebf-cc51-57ca-a956-675493c10198
+
+	measure 'Weekly Riders per Day' = AVERAGE ( my50_context[mean_daily] )
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: f7350c59-4354-5ab7-a608-0f656205ae81
+
+	column week
+		dataType: dateTime
+		formatString: d mmm yyyy
+		lineageTag: 61762cfa-1489-5d43-8527-0f36398c275b
+		summarizeBy: none
+		sourceColumn: week
+
+	column line
+		dataType: string
+		isHidden
+		lineageTag: bc1943aa-bd2f-5e82-bec4-4c0405386eb8
+		summarizeBy: none
+		sourceColumn: line
+
+	column mean_daily
+		dataType: double
+		formatString: #,0
+		lineageTag: e11530fd-dfdb-5f30-a810-c43cb170e088
+		summarizeBy: none
+		sourceColumn: mean_daily
+
+	partition my50_context = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\my50_context.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+				        {"week", type date},
+				        {"line", type text},
+				        {"mean_daily", type number}
+				    }, "en-US")
+				in
+				    Typed

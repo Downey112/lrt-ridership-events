@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.cache/
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+assets/kelana_jaya_lrt_original.jpg

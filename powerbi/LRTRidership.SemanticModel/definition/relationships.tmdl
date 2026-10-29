@@ -1,0 +1,27 @@
+relationship 9cd2ea3c-b5bb-5a4e-883c-e5073b1c3f9e
+	fromColumn: event_effects.line
+	toColumn: lines.line
+
+relationship 66d20fee-67d5-59de-8098-c3e920973aeb
+	fromColumn: event_daily.line
+	toColumn: lines.line
+
+relationship 19cc24db-b4f6-5134-ab61-6c6f12389818
+	fromColumn: monthly.line
+	toColumn: lines.line
+
+relationship 5f67085e-384a-54f1-8c7b-f1d819eb2b50
+	fromColumn: recovery_monthly.line
+	toColumn: lines.line
+
+relationship ca40659f-5fe5-5faa-b7b5-0200054dfa85
+	fromColumn: my50_context.line
+	toColumn: lines.line
+
+relationship 7f54e0f7-2275-50c1-a105-c60be252a79e
+	fromColumn: event_effects.event_id
+	toColumn: events.event_id
+
+relationship 2603c726-bd4f-5330-a2dc-ca7e96e96884
+	fromColumn: event_daily.event_id
+	toColumn: events.event_id

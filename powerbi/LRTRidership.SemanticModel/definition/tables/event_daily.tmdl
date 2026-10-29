@@ -1,0 +1,63 @@
+table event_daily
+	lineageTag: c6363354-ffa6-51f1-9541-5eb3a979fbce
+
+	measure 'Actual Riders' = SUM ( event_daily[actual] )
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 0ce25ec2-f758-5167-8cf0-236b2552ab81
+
+	measure 'Expected Riders' = SUM ( event_daily[predicted] )
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 96e92b31-94d8-5ecc-aaef-84f52bd025d8
+
+	column event_id
+		dataType: string
+		isHidden
+		lineageTag: 438438bf-a62c-56ef-a2af-071ac0ea0343
+		summarizeBy: none
+		sourceColumn: event_id
+
+	column line
+		dataType: string
+		isHidden
+		lineageTag: 433f8cd3-978b-5679-95df-a8de15d75791
+		summarizeBy: none
+		sourceColumn: line
+
+	column date
+		dataType: dateTime
+		formatString: d mmm yyyy
+		lineageTag: c3f50e60-0aae-574f-8cc6-74ff0ad189f8
+		summarizeBy: none
+		sourceColumn: date
+
+	column actual
+		dataType: double
+		formatString: #,0
+		lineageTag: 0f6f6628-9d3e-51c9-aef3-5cdff1970386
+		summarizeBy: none
+		sourceColumn: actual
+
+	column predicted
+		dataType: double
+		formatString: #,0
+		lineageTag: d0ddefab-7f99-5096-a739-b127a3677d44
+		summarizeBy: none
+		sourceColumn: predicted
+
+	partition event_daily = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\event_daily.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+				        {"event_id", type text},
+				        {"line", type text},
+				        {"date", type date},
+				        {"actual", type number},
+				        {"predicted", type number}
+				    }, "en-US")
+				in
+				    Typed

@@ -1,0 +1,4 @@
+expression DataFolder = "C:\Users\courts\lrt-ridership-events\powerbi\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 7985498c-226f-55e4-9b8a-8578e5035201
+
+	annotation PBI_ResultType = Text

@@ -1,0 +1,112 @@
+table event_effects
+	lineageTag: 437b7fb9-24b2-5b9c-8e4b-fe3991e6f5ff
+
+	measure 'Title Effects' = "What changed during: " & SELECTEDVALUE ( events[event], "pick an event" )
+		displayFolder: Titles
+		lineageTag: 100814a1-34a7-567b-9e26-2669263ed57e
+
+	measure 'Title Daily' = SELECTEDVALUE ( lines[line_name], "Pick a line" ) & " · actual vs expected without the event"
+		displayFolder: Titles
+		lineageTag: 6af0c96e-a5ce-592a-956e-cf19077a8291
+
+	measure 'Event Note' = SELECTEDVALUE ( events[note], "" ) & "  ·  " & SELECTEDVALUE ( events[dates], "" )
+		displayFolder: Titles
+		lineageTag: e2cb2018-4428-5c37-84bf-b607daa88dcb
+
+	column event_id
+		dataType: string
+		isHidden
+		lineageTag: 0e833cc1-1ccc-5912-be47-b9e11a2bd82a
+		summarizeBy: none
+		sourceColumn: event_id
+
+	column line
+		dataType: string
+		isHidden
+		lineageTag: a5d4f693-ecc2-52d4-a059-50db6d7b34e3
+		summarizeBy: none
+		sourceColumn: line
+
+	column effect
+		dataType: double
+		formatString: +0%;-0%;0%
+		lineageTag: f9f811e1-1578-5b65-bdc8-98e5fe060d51
+		summarizeBy: none
+		sourceColumn: effect
+
+	column placebo_n
+		dataType: int64
+		formatString: #,0
+		lineageTag: 1af99135-7864-5816-94fc-62c78a6789f5
+		summarizeBy: none
+		sourceColumn: placebo_n
+
+	column band_lo
+		dataType: double
+		formatString: +0%;-0%;0%
+		lineageTag: ebed87de-68a7-5552-8982-aace1e007d07
+		summarizeBy: none
+		sourceColumn: band_lo
+
+	column band_hi
+		dataType: double
+		formatString: "±"0%
+		lineageTag: e6540854-a463-56e0-84db-6ca1eb30989b
+		summarizeBy: none
+		sourceColumn: band_hi
+
+	column p_value
+		dataType: double
+		formatString: 0.00
+		lineageTag: a1e7c895-c88e-531c-93f2-01f12155301d
+		summarizeBy: none
+		sourceColumn: p_value
+
+	column verdict
+		dataType: string
+		lineageTag: cea4b0dd-9105-5d3b-9524-ed38f183e43f
+		summarizeBy: none
+		sourceColumn: verdict
+
+	column train_days
+		dataType: int64
+		formatString: #,0
+		lineageTag: 70b1423c-a964-56e6-863f-05f3c0540094
+		summarizeBy: none
+		sourceColumn: train_days
+
+	column pre_resid
+		dataType: double
+		formatString: +0%;-0%;0%
+		lineageTag: 18f88c89-df7c-5aa2-b0e0-4337b9d78f45
+		summarizeBy: none
+		sourceColumn: pre_resid
+
+	column effect_vs_pre
+		dataType: double
+		formatString: +0%;-0%;0%
+		lineageTag: 47408337-53d5-5afd-9bf0-2b1abc76db99
+		summarizeBy: none
+		sourceColumn: effect_vs_pre
+
+	partition event_effects = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\event_effects.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+				        {"event_id", type text},
+				        {"line", type text},
+				        {"effect", type number},
+				        {"placebo_n", Int64.Type},
+				        {"band_lo", type number},
+				        {"band_hi", type number},
+				        {"p_value", type number},
+				        {"verdict", type text},
+				        {"train_days", Int64.Type},
+				        {"pre_resid", type number},
+				        {"effect_vs_pre", type number}
+				    }, "en-US")
+				in
+				    Typed

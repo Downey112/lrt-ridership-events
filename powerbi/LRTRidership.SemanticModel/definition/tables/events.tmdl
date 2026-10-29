@@ -1,0 +1,82 @@
+table events
+	lineageTag: 1343f034-12f6-556b-a6d5-00e8a9cb9420
+
+	column event_id
+		dataType: string
+		isHidden
+		lineageTag: d07d519d-faf0-5c54-96ef-e478398ce180
+		summarizeBy: none
+		sourceColumn: event_id
+
+	column event
+		dataType: string
+		lineageTag: faa821bb-3413-541d-b6ab-20002d8a26ea
+		summarizeBy: none
+		sourceColumn: event
+		sortByColumn: event_order
+
+	column start
+		dataType: dateTime
+		formatString: d mmm yyyy
+		lineageTag: c2f4c529-5714-5956-9ce2-7c076dd3395b
+		summarizeBy: none
+		sourceColumn: start
+
+	column end
+		dataType: dateTime
+		formatString: d mmm yyyy
+		lineageTag: 5cd1c4e1-6232-5a28-83ee-ec4004ded296
+		summarizeBy: none
+		sourceColumn: end
+
+	column kind
+		dataType: string
+		lineageTag: 13d9c753-5ed5-54b2-9e2e-480fa5901a6e
+		summarizeBy: none
+		sourceColumn: kind
+
+	column note
+		dataType: string
+		lineageTag: 940ab990-1dfb-5a8c-aa46-82ec60a0dda5
+		summarizeBy: none
+		sourceColumn: note
+
+	column dates
+		dataType: string
+		lineageTag: 734bbf00-1b93-5050-8b95-94ea48cdc308
+		summarizeBy: none
+		sourceColumn: dates
+
+	column source
+		dataType: string
+		lineageTag: 17310cd2-d88a-5ede-9585-e75205d72d87
+		summarizeBy: none
+		sourceColumn: source
+
+	column event_order
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 502edb98-7091-5c36-9d6f-a2fb4e75dfa3
+		summarizeBy: none
+		sourceColumn: event_order
+
+	partition events = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\events.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+				        {"event_id", type text},
+				        {"event", type text},
+				        {"start", type date},
+				        {"end", type date},
+				        {"kind", type text},
+				        {"note", type text},
+				        {"dates", type text},
+				        {"source", type text},
+				        {"event_order", Int64.Type}
+				    }, "en-US")
+				in
+				    Typed

@@ -1,0 +1,5 @@
+line,line_name,line_order
+rail_lrt_kj,LRT Kelana Jaya,1
+rail_lrt_ampang,LRT Ampang/Sri Petaling,2
+rail_mrt_kajang,MRT Kajang,3
+rail_monorail,KL Monorail,4

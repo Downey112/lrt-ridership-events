@@ -1,0 +1,38 @@
+table lines
+	lineageTag: 3a4f8274-3c3a-532b-95ff-e585e486bf9a
+
+	column line
+		dataType: string
+		isHidden
+		lineageTag: dbf76e3c-c4d0-5654-8a62-3c3642afb87f
+		summarizeBy: none
+		sourceColumn: line
+
+	column line_name
+		dataType: string
+		lineageTag: e31ee005-1691-5089-a43c-f1768e10bce3
+		summarizeBy: none
+		sourceColumn: line_name
+		sortByColumn: line_order
+
+	column line_order
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: c362c03b-1210-57b8-b6d3-2b1615df9b7c
+		summarizeBy: none
+		sourceColumn: line_order
+
+	partition lines = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\lines.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+				        {"line", type text},
+				        {"line_name", type text},
+				        {"line_order", Int64.Type}
+				    }, "en-US")
+				in
+				    Typed
