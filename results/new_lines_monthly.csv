@@ -1,0 +1,162 @@
+month,line,line_name,mean_daily
+2022-06-01,rail_mrt_pjy,MRT Putrajaya,24637.6
+2022-07-01,rail_mrt_pjy,MRT Putrajaya,22220.774193548386
+2022-08-01,rail_mrt_pjy,MRT Putrajaya,18682.451612903227
+2022-09-01,rail_mrt_pjy,MRT Putrajaya,20173.633333333335
+2022-10-01,rail_mrt_pjy,MRT Putrajaya,20320.451612903227
+2022-11-01,rail_mrt_pjy,MRT Putrajaya,20361.5
+2022-12-01,rail_mrt_pjy,MRT Putrajaya,21420.16129032258
+2023-01-01,rail_mrt_pjy,MRT Putrajaya,20659.0
+2023-02-01,rail_mrt_pjy,MRT Putrajaya,19338.071428571428
+2023-03-01,rail_mrt_pjy,MRT Putrajaya,65700.58064516129
+2023-04-01,rail_mrt_pjy,MRT Putrajaya,71251.53333333334
+2023-05-01,rail_mrt_pjy,MRT Putrajaya,82033.83870967742
+2023-06-01,rail_mrt_pjy,MRT Putrajaya,84765.63333333333
+2023-07-01,rail_mrt_pjy,MRT Putrajaya,89730.48387096774
+2023-08-01,rail_mrt_pjy,MRT Putrajaya,99989.83870967742
+2023-09-01,rail_mrt_pjy,MRT Putrajaya,99581.66666666667
+2023-10-01,rail_mrt_pjy,MRT Putrajaya,106440.70967741935
+2023-11-01,rail_mrt_pjy,MRT Putrajaya,110689.4
+2023-12-01,rail_mrt_pjy,MRT Putrajaya,116920.96774193548
+2024-01-01,rail_mrt_pjy,MRT Putrajaya,117786.16129032258
+2024-02-01,rail_mrt_pjy,MRT Putrajaya,116011.10344827586
+2024-03-01,rail_mrt_pjy,MRT Putrajaya,120841.70967741935
+2024-04-01,rail_mrt_pjy,MRT Putrajaya,119183.8
+2024-05-01,rail_mrt_pjy,MRT Putrajaya,130495.03225806452
+2024-06-01,rail_mrt_pjy,MRT Putrajaya,124301.0
+2024-07-01,rail_mrt_pjy,MRT Putrajaya,137972.12903225806
+2024-08-01,rail_mrt_pjy,MRT Putrajaya,141613.06451612903
+2024-09-01,rail_mrt_pjy,MRT Putrajaya,134884.96666666667
+2024-10-01,rail_mrt_pjy,MRT Putrajaya,144152.35483870967
+2024-11-01,rail_mrt_pjy,MRT Putrajaya,145345.73333333334
+2024-12-01,rail_mrt_pjy,MRT Putrajaya,144246.74193548388
+2025-01-01,rail_mrt_pjy,MRT Putrajaya,139506.70967741936
+2025-02-01,rail_mrt_pjy,MRT Putrajaya,148128.57142857142
+2025-03-01,rail_mrt_pjy,MRT Putrajaya,138894.29032258064
+2025-04-01,rail_mrt_pjy,MRT Putrajaya,149510.33333333334
+2025-05-01,rail_mrt_pjy,MRT Putrajaya,152143.74193548388
+2025-06-01,rail_mrt_pjy,MRT Putrajaya,149305.6
+2025-07-01,rail_mrt_pjy,MRT Putrajaya,164854.25806451612
+2025-08-01,rail_mrt_pjy,MRT Putrajaya,162986.5483870968
+2025-09-01,rail_mrt_pjy,MRT Putrajaya,151464.26666666666
+2025-10-01,rail_mrt_pjy,MRT Putrajaya,153339.03225806452
+2025-11-01,rail_mrt_pjy,MRT Putrajaya,158644.4
+2025-12-01,rail_mrt_pjy,MRT Putrajaya,161008.51612903227
+2026-01-01,rail_mrt_pjy,MRT Putrajaya,162278.12903225806
+2026-02-01,rail_mrt_pjy,MRT Putrajaya,147602.7857142857
+2026-03-01,rail_mrt_pjy,MRT Putrajaya,152392.74193548388
+2026-04-01,rail_mrt_pjy,MRT Putrajaya,171564.6
+2026-05-01,rail_mrt_pjy,MRT Putrajaya,156934.06451612903
+2026-06-01,rail_mrt_pjy,MRT Putrajaya,158247.9
+2026-07-01,rail_mrt_pjy,MRT Putrajaya,169707.25806451612
+2026-08-01,rail_mrt_pjy,MRT Putrajaya,165944.03225806452
+2026-06-01,rail_lrt_shah_alam,LRT Shah Alam,56787.5
+2026-07-01,rail_lrt_shah_alam,LRT Shah Alam,64199.93548387097
+2026-08-01,rail_lrt_shah_alam,LRT Shah Alam,38068.967741935485
+2023-09-01,rail_komuter,KTM Komuter (Klang Valley),5137.333333333333
+2023-10-01,rail_komuter,KTM Komuter (Klang Valley),32860.45161290323
+2023-11-01,rail_komuter,KTM Komuter (Klang Valley),35723.63333333333
+2023-12-01,rail_komuter,KTM Komuter (Klang Valley),33388.6129032258
+2024-01-01,rail_komuter,KTM Komuter (Klang Valley),36289.8064516129
+2024-02-01,rail_komuter,KTM Komuter (Klang Valley),34730.58620689655
+2024-03-01,rail_komuter,KTM Komuter (Klang Valley),31827.483870967742
+2024-04-01,rail_komuter,KTM Komuter (Klang Valley),32861.73333333333
+2024-05-01,rail_komuter,KTM Komuter (Klang Valley),34211.45161290323
+2024-06-01,rail_komuter,KTM Komuter (Klang Valley),33078.833333333336
+2024-07-01,rail_komuter,KTM Komuter (Klang Valley),33365.74193548387
+2024-08-01,rail_komuter,KTM Komuter (Klang Valley),32663.483870967742
+2024-09-01,rail_komuter,KTM Komuter (Klang Valley),31883.866666666665
+2024-10-01,rail_komuter,KTM Komuter (Klang Valley),33475.967741935485
+2024-11-01,rail_komuter,KTM Komuter (Klang Valley),32951.4
+2024-12-01,rail_komuter,KTM Komuter (Klang Valley),32108.548387096773
+2025-01-01,rail_komuter,KTM Komuter (Klang Valley),30266.25806451613
+2025-02-01,rail_komuter,KTM Komuter (Klang Valley),33799.25
+2025-03-01,rail_komuter,KTM Komuter (Klang Valley),24108.774193548386
+2025-04-01,rail_komuter,KTM Komuter (Klang Valley),27243.333333333332
+2025-05-01,rail_komuter,KTM Komuter (Klang Valley),27418.483870967742
+2025-06-01,rail_komuter,KTM Komuter (Klang Valley),26267.7
+2025-07-01,rail_komuter,KTM Komuter (Klang Valley),28051.967741935485
+2025-08-01,rail_komuter,KTM Komuter (Klang Valley),26917.548387096773
+2025-09-01,rail_komuter,KTM Komuter (Klang Valley),25595.5
+2025-10-01,rail_komuter,KTM Komuter (Klang Valley),27652.83870967742
+2025-11-01,rail_komuter,KTM Komuter (Klang Valley),26679.9
+2025-12-01,rail_komuter,KTM Komuter (Klang Valley),26720.74193548387
+2026-01-01,rail_komuter,KTM Komuter (Klang Valley),29254.677419354837
+2026-02-01,rail_komuter,KTM Komuter (Klang Valley),29307.14285714286
+2026-03-01,rail_komuter,KTM Komuter (Klang Valley),24756.451612903227
+2026-04-01,rail_komuter,KTM Komuter (Klang Valley),26017.0
+2026-05-01,rail_komuter,KTM Komuter (Klang Valley),21871.83870967742
+2026-06-01,rail_komuter,KTM Komuter (Klang Valley),21284.3
+2026-07-01,rail_komuter,KTM Komuter (Klang Valley),20523.451612903227
+2026-08-01,rail_komuter,KTM Komuter (Klang Valley),18995.387096774193
+2020-10-01,rail_komuter_utara,KTM Komuter Utara,3905.705882352941
+2020-11-01,rail_komuter_utara,KTM Komuter Utara,2806.8
+2020-12-01,rail_komuter_utara,KTM Komuter Utara,4670.580645161291
+2021-01-01,rail_komuter_utara,KTM Komuter Utara,2951.516129032258
+2021-02-01,rail_komuter_utara,KTM Komuter Utara,2064.0714285714284
+2021-03-01,rail_komuter_utara,KTM Komuter Utara,3415.7096774193546
+2021-04-01,rail_komuter_utara,KTM Komuter Utara,3752.5
+2021-05-01,rail_komuter_utara,KTM Komuter Utara,1922.225806451613
+2021-06-01,rail_komuter_utara,KTM Komuter Utara,918.0666666666667
+2021-07-01,rail_komuter_utara,KTM Komuter Utara,1297.1935483870968
+2021-08-01,rail_komuter_utara,KTM Komuter Utara,1294.3870967741937
+2021-09-01,rail_komuter_utara,KTM Komuter Utara,1684.5
+2021-10-01,rail_komuter_utara,KTM Komuter Utara,3110.451612903226
+2021-11-01,rail_komuter_utara,KTM Komuter Utara,5281.333333333333
+2021-12-01,rail_komuter_utara,KTM Komuter Utara,6644.258064516129
+2022-01-01,rail_komuter_utara,KTM Komuter Utara,5887.806451612903
+2022-02-01,rail_komuter_utara,KTM Komuter Utara,5194.107142857143
+2022-03-01,rail_komuter_utara,KTM Komuter Utara,5311.774193548387
+2022-04-01,rail_komuter_utara,KTM Komuter Utara,6204.466666666666
+2022-05-01,rail_komuter_utara,KTM Komuter Utara,8127.032258064516
+2022-06-01,rail_komuter_utara,KTM Komuter Utara,8899.7
+2022-07-01,rail_komuter_utara,KTM Komuter Utara,8857.838709677419
+2022-08-01,rail_komuter_utara,KTM Komuter Utara,8589.258064516129
+2022-09-01,rail_komuter_utara,KTM Komuter Utara,10467.033333333333
+2022-10-01,rail_komuter_utara,KTM Komuter Utara,10794.483870967742
+2022-11-01,rail_komuter_utara,KTM Komuter Utara,10302.9
+2022-12-01,rail_komuter_utara,KTM Komuter Utara,11651.967741935483
+2023-01-01,rail_komuter_utara,KTM Komuter Utara,10220.58064516129
+2023-02-01,rail_komuter_utara,KTM Komuter Utara,10623.57142857143
+2023-03-01,rail_komuter_utara,KTM Komuter Utara,11088.41935483871
+2023-04-01,rail_komuter_utara,KTM Komuter Utara,10728.966666666667
+2023-05-01,rail_komuter_utara,KTM Komuter Utara,10970.161290322581
+2023-06-01,rail_komuter_utara,KTM Komuter Utara,11510.433333333332
+2023-07-01,rail_komuter_utara,KTM Komuter Utara,11054.516129032258
+2023-08-01,rail_komuter_utara,KTM Komuter Utara,11685.741935483871
+2023-09-01,rail_komuter_utara,KTM Komuter Utara,12234.866666666667
+2023-10-01,rail_komuter_utara,KTM Komuter Utara,13410.225806451614
+2023-11-01,rail_komuter_utara,KTM Komuter Utara,14345.733333333334
+2023-12-01,rail_komuter_utara,KTM Komuter Utara,15341.41935483871
+2024-01-01,rail_komuter_utara,KTM Komuter Utara,12994.483870967742
+2024-02-01,rail_komuter_utara,KTM Komuter Utara,15396.862068965518
+2024-03-01,rail_komuter_utara,KTM Komuter Utara,13613.58064516129
+2024-04-01,rail_komuter_utara,KTM Komuter Utara,14543.5
+2024-05-01,rail_komuter_utara,KTM Komuter Utara,15586.741935483871
+2024-06-01,rail_komuter_utara,KTM Komuter Utara,15549.5
+2024-07-01,rail_komuter_utara,KTM Komuter Utara,14567.677419354839
+2024-08-01,rail_komuter_utara,KTM Komuter Utara,14766.90322580645
+2024-09-01,rail_komuter_utara,KTM Komuter Utara,15509.133333333333
+2024-10-01,rail_komuter_utara,KTM Komuter Utara,16030.161290322581
+2024-11-01,rail_komuter_utara,KTM Komuter Utara,16310.6
+2024-12-01,rail_komuter_utara,KTM Komuter Utara,16479.774193548386
+2025-01-01,rail_komuter_utara,KTM Komuter Utara,16148.645161290322
+2025-02-01,rail_komuter_utara,KTM Komuter Utara,17039.035714285714
+2025-03-01,rail_komuter_utara,KTM Komuter Utara,13810.193548387097
+2025-04-01,rail_komuter_utara,KTM Komuter Utara,16924.533333333333
+2025-05-01,rail_komuter_utara,KTM Komuter Utara,16856.774193548386
+2025-06-01,rail_komuter_utara,KTM Komuter Utara,16686.966666666667
+2025-07-01,rail_komuter_utara,KTM Komuter Utara,15902.741935483871
+2025-08-01,rail_komuter_utara,KTM Komuter Utara,16714.0
+2025-09-01,rail_komuter_utara,KTM Komuter Utara,17336.466666666667
+2025-10-01,rail_komuter_utara,KTM Komuter Utara,17606.290322580644
+2025-11-01,rail_komuter_utara,KTM Komuter Utara,16707.733333333334
+2025-12-01,rail_komuter_utara,KTM Komuter Utara,16905.09677419355
+2026-01-01,rail_komuter_utara,KTM Komuter Utara,16998.290322580644
+2026-02-01,rail_komuter_utara,KTM Komuter Utara,16604.571428571428
+2026-03-01,rail_komuter_utara,KTM Komuter Utara,15566.870967741936
+2026-04-01,rail_komuter_utara,KTM Komuter Utara,17552.533333333333
+2026-05-01,rail_komuter_utara,KTM Komuter Utara,18106.935483870966
+2026-06-01,rail_komuter_utara,KTM Komuter Utara,17192.266666666666
+2026-07-01,rail_komuter_utara,KTM Komuter Utara,18276.90322580645
+2026-08-01,rail_komuter_utara,KTM Komuter Utara,17912.322580645163

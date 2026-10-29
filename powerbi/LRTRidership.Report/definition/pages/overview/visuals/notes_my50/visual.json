@@ -3,9 +3,9 @@
   "name": "notes_my50",
   "position": {
     "x": 956,
-    "y": 480,
+    "y": 432,
     "z": 22000,
-    "height": 216,
+    "height": 264,
     "width": 300,
     "tabOrder": 22000
   },
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "What about My50?",
+                    "value": "What changed riders?",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "12pt",
@@ -31,7 +31,31 @@
               {
                 "textRuns": [
                   {
-                    "value": "The RM50 rail-and-bus pass started on 1 Jan 2022, while COVID rules were still being lifted, and every line in this data got it at once. Nothing is left to compare against, so its effect can't be measured here.",
+                    "value": "Free fares did: +19% to +34% on three lines in Jun–Jul 2022, and LRT Shah Alam lost 4 in 10 weekday riders when its free rides ended.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#101828"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Disruptions moved riders: the Monorail gained 16% while Kelana Jaya was shut.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#101828"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "My50 still can't be measured from this data.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",

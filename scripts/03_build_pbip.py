@@ -7,6 +7,7 @@ Helpers adapted from the pricecatcher-anomaly report generator; the LRT photo is
 registered image resources (assets/hero_lrt.jpg, assets/strip_lrt.jpg).
 """
 import json
+import os
 import shutil
 import uuid
 from pathlib import Path
@@ -14,7 +15,8 @@ from pathlib import Path
 NAME = "LRTRidership"
 ROOT = Path(__file__).resolve().parents[1]
 PBI = ROOT / "powerbi"
-DATA = PBI / "data"
+# the DataFolder parameter must be absolute; PBI_DATA_FOLDER overrides it (e.g. when building from a worktree)
+DATA = Path(os.environ.get("PBI_DATA_FOLDER", PBI / "data"))
 NS = uuid.UUID("6a0f3c2e-4b7d-4e1a-9c58-2d7e1b9f0a31")
 SCHEMA = "https://developer.microsoft.com/json-schemas/fabric"
 
@@ -26,6 +28,10 @@ LINE_COLOURS = {     # approximations of the line colours on the Klang Valley ra
     "LRT Ampang/Sri Petaling": "#E57200",
     "MRT Kajang": "#047940",
     "KL Monorail": "#7AB800",
+    "MRT Putrajaya": "#D9A400",
+    "LRT Shah Alam": "#0096A6",
+    "KTM Komuter (Klang Valley)": "#1F4E9C",
+    "KTM Komuter Utara": "#8B95A5",   # comparison line, kept grey
 }
 SERIES = list(LINE_COLOURS.values()) + ["#5B6475", "#98A2B3"]
 IMAGES = {"hero": "hero_lrt.jpg", "strip": "strip_lrt.jpg"}
@@ -101,15 +107,16 @@ EFFECT_MEASURES = [
 DAILY_MEASURES = [
     ("Actual Riders", "SUM ( event_daily[actual] )", "#,0", "Base"),
     ("Expected Riders", "SUM ( event_daily[predicted] )", "#,0", "Base"),
+    ("Expected via Komuter Utara", "SUM ( event_daily[predicted_ctrl] )", "#,0", "Base"),
 ]
 
 TABLES = ["lines", "events", "event_effects", "event_daily", "monthly", "recovery_monthly", "my50_context",
-          "line_recovery"]
+          "line_recovery", "new_lines_monthly", "lrt3_phases", "monorail_share"]
 
 RELATIONSHIPS = [("event_effects", "line", "lines", "line"), ("event_daily", "line", "lines", "line"),
                  ("monthly", "line", "lines", "line"), ("recovery_monthly", "line", "lines", "line"),
                  ("my50_context", "line", "lines", "line"), ("event_effects", "event_id", "events", "event_id"),
-                 ("event_daily", "event_id", "events", "event_id")]
+                 ("event_daily", "event_id", "events", "event_id"), ("new_lines_monthly", "line", "lines", "line")]
 
 
 def model_files():
@@ -143,13 +150,15 @@ def model_files():
             ("note", txt, None), ("dates", txt, None), ("source", txt, None), ("event_order", i64, "0")),
             sort_by={"event": "event_order"}, hidden=("event_id", "event_order")),
         "event_effects": csv_table("event_effects", cols(
-            ("event_id", txt, None), ("line", txt, None), ("effect", dbl, spct), ("placebo_n", i64, None),
-            ("band_lo", dbl, spct), ("band_hi", dbl, '"±"0%'), ("p_value", dbl, "0.00"), ("verdict", txt, None),
-            ("train_days", i64, None), ("pre_resid", dbl, spct), ("effect_vs_pre", dbl, spct)),
+            ("event_id", txt, None), ("mode", txt, None), ("line", txt, None), ("effect", dbl, spct),
+            ("band_lo", dbl, spct), ("band_hi", dbl, '"±"0%'), ("p_value", dbl, "0.00"), ("pre_resid", dbl, spct),
+            ("effect_vs_pre", dbl, spct), ("effect_ctrl", dbl, spct), ("band_ctrl", dbl, '"±"0%'),
+            ("p_ctrl", dbl, "0.00"), ("verdict", txt, None), ("failed_checks", txt, None),
+            ("placebo_n", i64, None), ("train_days", i64, None)),
             EFFECT_MEASURES, hidden=("event_id", "line")),
         "event_daily": csv_table("event_daily", cols(
             ("event_id", txt, None), ("line", txt, None), ("date", dt, None), ("actual", dbl, "#,0"),
-            ("predicted", dbl, "#,0")), DAILY_MEASURES, hidden=("event_id", "line")),
+            ("predicted", dbl, "#,0"), ("predicted_ctrl", dbl, "#,0")), DAILY_MEASURES, hidden=("event_id", "line")),
         "monthly": csv_table("monthly", cols(("month", dt, "mmm yyyy"), ("line", txt, None), ("mean_daily", dbl, "#,0")),
                              [("Riders per Day", "AVERAGE ( monthly[mean_daily] )", "#,0", "Base")], hidden=("line",)),
         "recovery_monthly": csv_table("recovery_monthly", cols(
@@ -161,6 +170,16 @@ def model_files():
                                   hidden=("line",)),
         "line_recovery": csv_table("line_recovery", cols(("line", txt, None), ("recovery", dbl, pct)),
                                    RECOVERY_MEASURES, hidden=("line",)),
+        "new_lines_monthly": csv_table("new_lines_monthly", cols(
+            ("month", dt, "mmm yyyy"), ("line", txt, None), ("mean_daily", dbl, "#,0")),
+            [("New Line Riders per Day", "AVERAGE ( new_lines_monthly[mean_daily] )", "#,0", "Base")],
+            hidden=("line",)),
+        "lrt3_phases": csv_table("lrt3_phases", cols(
+            ("phase", txt, None), ("phase_order", i64, "0"), ("days", i64, None), ("mean_weekday", dbl, "#,0")),
+            [("LRT3 Weekday Riders", "AVERAGE ( lrt3_phases[mean_weekday] )", "#,0", "Base")],
+            sort_by={"phase": "phase_order"}, hidden=("phase_order",)),
+        "monorail_share": csv_table("monorail_share", cols(("month", dt, "mmm yyyy"), ("share", dbl, "0.0%")),
+                                    [("Monorail Share", "AVERAGE ( monorail_share[share] )", "0.0%", "Base")]),
     }
     for name, body in T.items():
         files[f"definition/tables/{name}.tmdl"] = body
@@ -350,9 +369,9 @@ def page_overview():
     p.text("hero_title", (24, 430, 296, 270), [
         ("KLANG VALLEY RAIL", "Segoe UI Semibold", "9pt", "#FDA29B"),
         ("Did fares and network changes move rail riders?", "Segoe UI Semibold", "20pt", "#FFFFFF"),
-        ("Daily ridership on four Rapid KL lines, Jan 2019 – Aug 2026, from data.gov.my.", "Segoe UI", "10pt",
+        ("Daily ridership on Klang Valley rail lines, Jan 2019 – Aug 2026, from data.gov.my.", "Segoe UI", "10pt",
          "#D0D5DD"),
-        ("Each event is compared with the ridership the same line would normally have had on those days.",
+        ("Six events, each compared with what the same line would normally have carried, then checked three ways.",
          "Segoe UI", "10pt", "#D0D5DD"),
     ])
     cards = [("kj", "Recovery KJ", "LRT Kelana Jaya"), ("ampang", "Recovery Ampang", "LRT Ampang/Sri Petaling"),
@@ -360,20 +379,21 @@ def page_overview():
     for i, (key, measure, line) in enumerate(cards):
         p.card(key, (360 + i * 228, 24, 220, 104), "line_recovery", measure, line,
                "riders vs 2019, Jan–Aug 2026", LINE_COLOURS[line])
-    line_chart(p, "chart_monthly", (360, 144, 896, 320), C("monthly", "month", active=True),
+    line_chart(p, "chart_monthly", (360, 144, 896, 272), C("monthly", "month", active=True),
                M("monthly", "Riders per Day"), "Average riders per day, by month",
                "COVID lockdowns 2020–21, then a steady climb · the sharp yearly dips are Chinese New Year and Hari Raya",
                "Line chart of average daily riders per month for each line, 2019 to 2026.")
-    p.table("table_events", (360, 480, 588, 216),
-            [C("events", "event", "Event"), C("events", "dates", "Dates"), C("events", "note", "Note")],
+    p.table("table_events", (360, 432, 588, 264),
+            [C("events", "event", "Event"), C("events", "dates", "Dates")],
             "Events tested", "Dates checked against news reports and the daily data itself",
-            "Table of the three events tested, with dates and notes.",
-            sort=(col_ref("events", "event_order"), "Ascending"), widths=[190, 110, 220])
-    p.text("notes_my50", (956, 480, 300, 216), [
-        ("What about My50?", "Segoe UI Semibold", "12pt", INK),
-        ("The RM50 rail-and-bus pass started on 1 Jan 2022, while COVID rules were still being lifted, and "
-         "every line in this data got it at once. Nothing is left to compare against, so its effect can't be "
-         "measured here.", "Segoe UI", "9pt", INK),
+            "Table of the six events tested, with dates.",
+            sort=(col_ref("events", "event_order"), "Ascending"), widths=[360, 180])
+    p.text("notes_my50", (956, 432, 300, 264), [
+        ("What changed riders?", "Segoe UI Semibold", "12pt", INK),
+        ("Free fares did: +19% to +34% on three lines in Jun–Jul 2022, and LRT Shah Alam lost 4 in 10 weekday "
+         "riders when its free rides ended.", "Segoe UI", "9pt", INK),
+        ("Disruptions moved riders: the Monorail gained 16% while Kelana Jaya was shut.", "Segoe UI", "9pt", INK),
+        ("My50 still can't be measured from this data.", "Segoe UI", "9pt", INK),
         (CREDIT, "Segoe UI", "7pt", MUTED),
     ], background=True)
     return p
@@ -382,8 +402,8 @@ def page_overview():
 def page_events():
     p = Page("events", "Event effects")
     p.strip_header("What did each event change?",
-                   "Effect = actual ÷ expected riders − 1 · 'clear' = bigger than 95% of fake effects at ordinary dates "
-                   "AND still clear against the 2 weeks just before")
+                   "Effect = actual ÷ expected − 1 · 'clear' = beyond normal noise, AND still clear against the 2 weeks "
+                   "before, AND against KTM Komuter Utara (not Rapid KL)")
     p.slicer("slicer_event", (24, 96, 400, 56), "events", "event", "Event", default="Free month on all Rapid KL services",
              alt="Choose the event to show.")
     p.slicer("slicer_line", (432, 96, 260, 56), "lines", "line_name", "Line for the daily chart",
@@ -392,29 +412,34 @@ def page_events():
             {"Values": {"projections": [M("event_effects", "Event Note")]}}, None,
             alt="Note on the selected event.",
             objects={"labels": [{"properties": {"fontSize": lit("10D"), "color": color(MUTED)}}]}, pad=(4, 4, 12, 12))
-    p.table("table_effects", (24, 168, 560, 528),
+    p.table("table_effects", (24, 168, 640, 528),
             [C("lines", "line_name", "Line"), C("event_effects", "effect", "Effect"),
-             C("event_effects", "effect_vs_pre", "vs 2 weeks before"), C("event_effects", "band_hi", "Normal noise"),
-             C("event_effects", "verdict", "Verdict"), C("event_effects", "p_value", "p")],
+             C("event_effects", "band_hi", "Normal noise"), C("event_effects", "effect_vs_pre", "vs 2 weeks before"),
+             C("event_effects", "effect_ctrl", "vs Komuter Utara"), C("event_effects", "verdict", "Verdict"),
+             C("event_effects", "failed_checks", "Check failed")],
             {"expr": measure_ref("event_effects", "Title Effects")},
-            "Normal noise = 95% of fake 'effects' at 155 ordinary dates fall inside ± this · p = share of fakes at "
-            "least this big",
-            "Table of the estimated effect on each line for the selected event, with the normal-noise band.",
-            sort=(col_ref("lines", "line_name"), "Ascending"), widths=[150, 58, 74, 64, 122, 44])
+            "Normal noise = 95% of fake 'effects' at 120–145 ordinary dates (2023–26) fall inside ± this",
+            "Table of the estimated effect on each line for the selected event, with the normal-noise band and checks.",
+            sort=(col_ref("lines", "line_name"), "Ascending"), widths=[118, 54, 56, 66, 66, 98, 118])
     p.interactions.append({"source": "slicer_line", "target": "table_effects", "type": "NoFilter"})
-    p.chart("chart_daily", (592, 168, 664, 528), "lineChart",
+    p.chart("chart_daily", (672, 168, 584, 528), "lineChart",
             {"Category": {"projections": [C("event_daily", "date", active=True)]},
              "Y": {"projections": [M("event_daily", "Actual Riders", "Actual"),
-                                   M("event_daily", "Expected Riders", "Expected without the event")]}},
+                                   M("event_daily", "Expected Riders", "Expected without the event"),
+                                   M("event_daily", "Expected via Komuter Utara", "Expected via Komuter Utara")]}},
             {"expr": measure_ref("event_effects", "Title Daily")},
-            "Expected = same line's weekday, holiday and trend pattern from the weeks around the event",
+            "Expected = the line's weekday, holiday, school-break and trend pattern from the weeks around the event",
             "Line chart of actual and expected daily riders during the selected event for the selected line.",
             objects={"dataPoint": [{"properties": {"fill": color(SIGNAL)},
                                     "selector": {"metadata": "event_daily.Actual Riders"}},
                                    {"properties": {"fill": color("#98A2B3")},
-                                    "selector": {"metadata": "event_daily.Expected Riders"}}],
+                                    "selector": {"metadata": "event_daily.Expected Riders"}},
+                                   {"properties": {"fill": color("#1F4E9C")},
+                                    "selector": {"metadata": "event_daily.Expected via Komuter Utara"}}],
                      "lineStyles": [{"properties": {"lineStyle": s("dashed")},
-                                     "selector": {"metadata": "event_daily.Expected Riders"}}],
+                                     "selector": {"metadata": "event_daily.Expected Riders"}},
+                                    {"properties": {"lineStyle": s("dotted")},
+                                     "selector": {"metadata": "event_daily.Expected via Komuter Utara"}}],
                      "legend": [{"properties": {"show": lit("true"), "position": s("Top")}}]},
             sort=(col_ref("event_daily", "date"), "Ascending"))
     return p
@@ -424,33 +449,72 @@ def page_recovery():
     p = Page("recovery", "Recovery & My50")
     p.strip_header("Are riders back to 2019 levels?",
                    "Each month's average daily riders ÷ the same month in 2019 · 100% = fully recovered")
-    line_chart(p, "chart_recovery", (24, 96, 1232, 320), C("recovery_monthly", "month", active=True),
+    line_chart(p, "chart_recovery", (24, 96, 1232, 280), C("recovery_monthly", "month", active=True),
                M("recovery_monthly", "Recovery vs 2019"), "Riders vs the same month in 2019",
                "First full month back at 2019: Monorail Jun 2022, MRT Kajang Feb 2023, Ampang May 2024 · "
                "Kelana Jaya still about 95%",
                "Line chart of monthly ridership as a share of the same month in 2019, by line.")
-    line_chart(p, "chart_my50", (24, 432, 800, 264), C("my50_context", "week", active=True),
+    line_chart(p, "chart_my50", (24, 392, 560, 304), C("my50_context", "week", active=True),
                M("my50_context", "Weekly Riders per Day"), "Around the My50 relaunch (1 Jan 2022)",
                "Weekly averages, Jul 2021 – Jun 2022 · the climb starts before My50, as lockdowns ended",
                "Line chart of weekly average daily riders per line from July 2021 to June 2022.")
-    p.text("notes_limits", (832, 432, 424, 264), [
+    p.chart("chart_monorail_share", (592, 392, 320, 304), "lineChart",
+            {"Category": {"projections": [C("monorail_share", "month", active=True)]},
+             "Y": {"projections": [M("monorail_share", "Monorail Share")]}},
+            "Monorail riders per 100 LRT riders",
+            "Steps: Nov 2022 KJ shutdown, Feb 2023 Ampang cut",
+            "Line chart of Monorail riders as a share of Kelana Jaya plus Ampang riders, 2019 to 2026.",
+            objects={"dataPoint": [{"properties": {"fill": color(LINE_COLOURS["KL Monorail"])},
+                                    "selector": {"metadata": "monorail_share.Monorail Share"}}]},
+            sort=(col_ref("monorail_share", "month"), "Ascending"))
+    p.text("notes_limits", (920, 392, 336, 304), [
         ("Limits", "Segoe UI Semibold", "12pt", INK),
-        ("My50 can't be measured: it began as COVID rules eased, and there is no line without it to compare.",
+        ("My50 still can't be measured: inside ±12–17% noise, and the comparison line is thrown off by northern "
+         "holiday travel in Dec 2021 (school calendar for 2021 not found).", "Segoe UI", "9pt", INK),
+        ("Monorail's 2019 base was low (fleet shortage; ~65k a day in 2015), and riders who switched during the "
+         "KJ shutdown and Ampang cut partly stayed.", "Segoe UI", "9pt", INK),
+        ("School holidays for 2022–26 come from unofficial calendars (data/school_holidays.csv).",
          "Segoe UI", "9pt", INK),
-        ("The free month started the same day MRT Putrajaya Phase 1 opened, so part of its effect may be the "
-         "new line feeding others.", "Segoe UI", "9pt", INK),
-        ("'Not robust' = ridership was already rising just before the event, so the jump may not be the event's.",
-         "Segoe UI", "9pt", INK),
-        ("School holidays and Selangor-only holidays are not in the model. Monorail at ~175% of 2019 may partly "
-         "reflect counting changes; not checked.", "Segoe UI", "9pt", INK),
         ("Data: ridership_headline, data.gov.my (Prasarana / Ministry of Transport).", "Segoe UI", "8pt", MUTED),
         (CREDIT, "Segoe UI", "7pt", MUTED),
     ], background=True)
     return p
 
 
+def page_new_lines():
+    p = Page("new_lines", "New lines")
+    p.strip_header("How are the newer lines doing?",
+                   "MRT Putrajaya from Jun 2022, KTM Komuter (Klang Valley) data from Sep 2023, "
+                   "LRT Shah Alam from 29 Jun 2026")
+    line_chart(p, "chart_new_lines", (24, 96, 1232, 300), C("new_lines_monthly", "month", active=True),
+               M("new_lines_monthly", "New Line Riders per Day"), "Average riders per day, by month",
+               "MRT Putrajaya keeps climbing after Phase 2 (Mar 2023) · KTM Komuter (Klang Valley) slips through 2025–26",
+               "Line chart of average daily riders per month on MRT Putrajaya, KTM Komuter Klang Valley and "
+               "LRT Shah Alam.")
+    p.chart("chart_lrt3", (24, 412, 600, 284), "clusteredColumnChart",
+            {"Category": {"projections": [C("lrt3_phases", "phase", active=True)]},
+             "Y": {"projections": [M("lrt3_phases", "LRT3 Weekday Riders")]}},
+            "LRT Shah Alam: weekday riders by fare phase",
+            "Mon–Fri, public holidays excluded · free to 31 Jul, extended to 14 Aug, then paid",
+            "Column chart of LRT Shah Alam average weekday riders: 55,418 while free, 45,839 in the extension, "
+            "33,729 once paid.",
+            objects={"dataPoint": [{"properties": {"fill": color(LINE_COLOURS["LRT Shah Alam"])}}],
+                     "labels": [{"properties": {"show": lit("true"), "labelDisplayUnits": lit("1D")}}]},
+            sort=(col_ref("lrt3_phases", "phase"), "Ascending"))
+    p.text("notes_new_lines", (632, 412, 624, 284), [
+        ("What the new lines show", "Segoe UI Semibold", "12pt", INK),
+        ("LRT Shah Alam lost about 4 in 10 weekday riders once fares started (55k free → 34k paid), the 2022 "
+         "free month in reverse.", "Segoe UI", "9pt", INK),
+        ("Its opening did not measurably move the older lines: Kelana Jaya +12% and MRT Kajang +10% in its first "
+         "seven weeks, both inside the ±15% noise for a forecast that long.", "Segoe UI", "9pt", INK),
+        ("Only seven weeks of LRT Shah Alam data so far (to 31 Aug 2026); paid ridership may still be settling.",
+         "Segoe UI", "9pt", MUTED),
+    ], background=True)
+    return p
+
+
 def report_files():
-    pages = [page_overview(), page_events(), page_recovery()]
+    pages = [page_overview(), page_events(), page_recovery(), page_new_lines()]
     images = [{"name": f, "path": f, "type": "Image"} for f in IMAGES.values()]
     files = {
         ".platform": platform("Report"),
@@ -502,6 +566,7 @@ def theme():
                            "categoryLabels": [{"show": False}]}},
             "lineChart": {"*": {"lineStyles": [{"strokeWidth": 2}], "categoryAxis": [{**axis, "gridlineShow": False}],
                                 "valueAxis": [{**axis, **grid}], "legend": legend}},
+            "clusteredColumnChart": {"*": {"categoryAxis": [axis], "valueAxis": [{**axis, "show": False}]}},
             "tableEx": {"*": {"grid": [{"gridHorizontal": True, "gridHorizontalColor": {"solid": {"color": RULE}},
                                         "gridVertical": False, "rowPadding": 4}],
                               "columnHeaders": [{"fontColor": {"solid": {"color": "#FFFFFF"}}, "fontSize": 9,

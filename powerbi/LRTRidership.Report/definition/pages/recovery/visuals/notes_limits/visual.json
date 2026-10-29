@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "notes_limits",
   "position": {
-    "x": 832,
-    "y": 432,
-    "z": 6000,
-    "height": 264,
-    "width": 424,
-    "tabOrder": 6000
+    "x": 920,
+    "y": 392,
+    "z": 7000,
+    "height": 304,
+    "width": 336,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "textbox",
@@ -31,7 +31,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "My50 can't be measured: it began as COVID rules eased, and there is no line without it to compare.",
+                    "value": "My50 still can't be measured: inside ±12–17% noise, and the comparison line is thrown off by northern holiday travel in Dec 2021 (school calendar for 2021 not found).",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -43,7 +43,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "The free month started the same day MRT Putrajaya Phase 1 opened, so part of its effect may be the new line feeding others.",
+                    "value": "Monorail's 2019 base was low (fleet shortage; ~65k a day in 2015), and riders who switched during the KJ shutdown and Ampang cut partly stayed.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -55,19 +55,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "'Not robust' = ridership was already rising just before the event, so the jump may not be the event's.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "9pt",
-                      "color": "#101828"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "School holidays and Selangor-only holidays are not in the model. Monorail at ~175% of 2019 may partly reflect counting changes; not checked.",
+                    "value": "School holidays for 2022–26 come from unofficial calendars (data/school_holidays.csv).",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",

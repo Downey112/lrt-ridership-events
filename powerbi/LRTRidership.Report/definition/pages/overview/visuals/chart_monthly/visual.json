@@ -5,7 +5,7 @@
     "x": 360,
     "y": 144,
     "z": 20000,
-    "height": 320,
+    "height": 272,
     "width": 896,
     "tabOrder": 20000
   },
@@ -246,6 +246,170 @@
                     "Right": {
                       "Literal": {
                         "Value": "'KL Monorail'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#D9A400'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "lines"
+                          }
+                        },
+                        "Property": "line_name"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'MRT Putrajaya'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0096A6'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "lines"
+                          }
+                        },
+                        "Property": "line_name"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'LRT Shah Alam'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F4E9C'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "lines"
+                          }
+                        },
+                        "Property": "line_name"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'KTM Komuter (Klang Valley)'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8B95A5'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "lines"
+                          }
+                        },
+                        "Property": "line_name"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'KTM Komuter Utara'"
                       }
                     }
                   }

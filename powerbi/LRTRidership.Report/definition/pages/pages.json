@@ -3,7 +3,8 @@
   "pageOrder": [
     "overview",
     "events",
-    "recovery"
+    "recovery",
+    "new_lines"
   ],
   "activePageName": "overview"
 }

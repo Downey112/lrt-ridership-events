@@ -43,7 +43,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Daily ridership on four Rapid KL lines, Jan 2019 – Aug 2026, from data.gov.my.",
+                    "value": "Daily ridership on Klang Valley rail lines, Jan 2019 – Aug 2026, from data.gov.my.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -55,7 +55,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Each event is compared with the ridership the same line would normally have had on those days.",
+                    "value": "Six events, each compared with what the same line would normally have carried, then checked three ways.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",

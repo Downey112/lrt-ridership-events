@@ -25,3 +25,7 @@ relationship 7f54e0f7-2275-50c1-a105-c60be252a79e
 relationship 2603c726-bd4f-5330-a2dc-ca7e96e96884
 	fromColumn: event_daily.event_id
 	toColumn: events.event_id
+
+relationship e8bb276a-fee9-5754-b64a-f4040af31b7a
+	fromColumn: new_lines_monthly.line
+	toColumn: lines.line

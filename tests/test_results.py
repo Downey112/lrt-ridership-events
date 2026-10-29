@@ -1,6 +1,7 @@
 """Consistency checks on the analysis outputs (run scripts 01 and 02 first)."""
 from pathlib import Path
 
+import holidays
 import numpy as np
 import pandas as pd
 import pytest
@@ -26,17 +27,24 @@ def test_raw_lines_complete(raw):
     assert raw[LINES].notna().all().all() and (raw[LINES] > 0).all().all()
 
 
-def test_events_inside_data(raw):
-    ev = pd.read_csv(ROOT / "data" / "events.csv", parse_dates=["start", "end"])
-    assert (ev["start"] <= ev["end"]).all()
-    assert ev["start"].min() - pd.Timedelta(days=56) >= raw.index[0]
-    assert ev["end"].max() + pd.Timedelta(days=70) <= raw.index[-1]
+@pytest.fixture(scope="module")
+def events():
+    return pd.read_csv(ROOT / "data" / "events.csv", parse_dates=["start", "end"])
 
 
-def test_one_row_per_event_and_line(effects):
-    assert len(effects) == 3 * len(LINES)
+def test_events_inside_data(raw, events):
+    assert (events["start"] <= events["end"]).all() and set(events["mode"]) <= {"both", "pre"}
+    assert events["start"].min() - pd.Timedelta(days=56) >= raw.index[0]
+    both = events[events["mode"] == "both"]
+    assert (both["end"] + pd.Timedelta(days=70) <= raw.index[-1]).all()
+    assert (events["end"] <= raw.index[-1]).all()
+
+
+def test_one_row_per_event_and_line(effects, events):
+    assert len(effects) == events["lines"].str.split(";").str.len().sum()
     assert not effects.duplicated(["event_id", "line"]).any()
-    assert (effects["placebo_n"] >= 100).all() and (effects["train_days"] >= 60).all()
+    min_days = effects["mode"].map({"both": 60, "pre": 40})
+    assert (effects["placebo_n"] >= 100).all() and (effects["train_days"] >= min_days).all()
 
 
 def test_band_symmetric_and_verdict_consistent(effects):
@@ -45,14 +53,28 @@ def test_band_symmetric_and_verdict_consistent(effects):
     assert (effects.loc[inside, "verdict"] == "within normal noise").all()
     clear = effects["verdict"].str.startswith("clear")
     assert (effects.loc[clear, "effect_vs_pre"].abs() > effects.loc[clear, "band_hi"]).all()
+    assert (effects.loc[clear, "effect_ctrl"].abs() > effects.loc[clear, "band_ctrl"]).all()
+    assert (np.sign(effects.loc[clear, "effect_ctrl"]) == np.sign(effects.loc[clear, "effect"])).all()
+    not_robust = effects["verdict"].str.endswith("not robust")
+    assert effects.loc[not_robust, "failed_checks"].notna().all()
     assert np.allclose(effects["effect_vs_pre"], (1 + effects["effect"]) / (1 + effects["pre_resid"]) - 1)
 
 
 def test_effect_matches_daily_sums(effects):
     daily = pd.read_csv(RES / "event_daily.csv")
-    sums = daily.groupby(["event_id", "line"])[["actual", "predicted"]].sum()
+    sums = daily.groupby(["event_id", "line"])[["actual", "predicted", "predicted_ctrl"]].sum()
     joined = effects.set_index(["event_id", "line"]).join(sums)
     assert np.allclose(joined["effect"], joined["actual"] / joined["predicted"] - 1)
+    assert np.allclose(joined["effect_ctrl"], joined["actual"] / joined["predicted_ctrl"] - 1)
+
+
+def test_lrt3_phases_match_raw(raw):
+    ph = pd.read_csv(RES / "lrt3_phases.csv").set_index("phase_order")
+    hol = set(holidays.Malaysia(subdiv="KUL", years=2026)) | set(holidays.Malaysia(subdiv="SGR", years=2026))
+    paid = raw.loc["2026-08-15":"2026-08-31", "rail_lrt_shah_alam"]
+    paid = paid[(paid.index.day_of_week < 5) & ~paid.index.to_series().dt.date.isin(hol)]
+    assert ph.loc[3, "days"] == len(paid) and ph.loc[3, "mean_weekday"] == pytest.approx(paid.mean())
+    assert ph["mean_weekday"].is_monotonic_decreasing
 
 
 def test_daily_actuals_are_raw_values(raw):

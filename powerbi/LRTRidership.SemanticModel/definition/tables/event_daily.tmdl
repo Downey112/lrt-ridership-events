@@ -11,6 +11,11 @@ table event_daily
 		displayFolder: Base
 		lineageTag: 96e92b31-94d8-5ecc-aaef-84f52bd025d8
 
+	measure 'Expected via Komuter Utara' = SUM ( event_daily[predicted_ctrl] )
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 75aba738-0539-5999-b799-96d351644dc6
+
 	column event_id
 		dataType: string
 		isHidden
@@ -46,6 +51,13 @@ table event_daily
 		summarizeBy: none
 		sourceColumn: predicted
 
+	column predicted_ctrl
+		dataType: double
+		formatString: #,0
+		lineageTag: ea1fb921-2229-5ef8-a9bd-9793a98efbd8
+		summarizeBy: none
+		sourceColumn: predicted_ctrl
+
 	partition event_daily = m
 		mode: import
 		source =
@@ -57,7 +69,8 @@ table event_daily
 				        {"line", type text},
 				        {"date", type date},
 				        {"actual", type number},
-				        {"predicted", type number}
+				        {"predicted", type number},
+				        {"predicted_ctrl", type number}
 				    }, "en-US")
 				in
 				    Typed

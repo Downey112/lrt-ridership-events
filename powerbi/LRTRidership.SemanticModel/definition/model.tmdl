@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["DataFolder", "lines", "events", "event_effects", "event_daily", "monthly", "recovery_monthly", "my50_context", "line_recovery"]
+annotation PBI_QueryOrder = ["DataFolder", "lines", "events", "event_effects", "event_daily", "monthly", "recovery_monthly", "my50_context", "line_recovery", "new_lines_monthly", "lrt3_phases", "monorail_share"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -20,3 +20,6 @@ ref table monthly
 ref table recovery_monthly
 ref table my50_context
 ref table line_recovery
+ref table new_lines_monthly
+ref table lrt3_phases
+ref table monorail_share

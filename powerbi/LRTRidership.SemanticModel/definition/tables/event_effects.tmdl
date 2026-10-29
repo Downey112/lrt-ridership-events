@@ -20,6 +20,12 @@ table event_effects
 		summarizeBy: none
 		sourceColumn: event_id
 
+	column mode
+		dataType: string
+		lineageTag: 8a3dc7dc-624f-5215-98e7-bdcef499fe03
+		summarizeBy: none
+		sourceColumn: mode
+
 	column line
 		dataType: string
 		isHidden
@@ -33,13 +39,6 @@ table event_effects
 		lineageTag: f9f811e1-1578-5b65-bdc8-98e5fe060d51
 		summarizeBy: none
 		sourceColumn: effect
-
-	column placebo_n
-		dataType: int64
-		formatString: #,0
-		lineageTag: 1af99135-7864-5816-94fc-62c78a6789f5
-		summarizeBy: none
-		sourceColumn: placebo_n
 
 	column band_lo
 		dataType: double
@@ -62,19 +61,6 @@ table event_effects
 		summarizeBy: none
 		sourceColumn: p_value
 
-	column verdict
-		dataType: string
-		lineageTag: cea4b0dd-9105-5d3b-9524-ed38f183e43f
-		summarizeBy: none
-		sourceColumn: verdict
-
-	column train_days
-		dataType: int64
-		formatString: #,0
-		lineageTag: 70b1423c-a964-56e6-863f-05f3c0540094
-		summarizeBy: none
-		sourceColumn: train_days
-
 	column pre_resid
 		dataType: double
 		formatString: +0%;-0%;0%
@@ -89,6 +75,53 @@ table event_effects
 		summarizeBy: none
 		sourceColumn: effect_vs_pre
 
+	column effect_ctrl
+		dataType: double
+		formatString: +0%;-0%;0%
+		lineageTag: 5f674428-1d3b-5b78-abdc-2bfdd5999571
+		summarizeBy: none
+		sourceColumn: effect_ctrl
+
+	column band_ctrl
+		dataType: double
+		formatString: "±"0%
+		lineageTag: fb7263cc-9dcc-50e8-bbb9-a4090e6e2153
+		summarizeBy: none
+		sourceColumn: band_ctrl
+
+	column p_ctrl
+		dataType: double
+		formatString: 0.00
+		lineageTag: c5e5feb0-def9-58a2-a810-4ec79aedd031
+		summarizeBy: none
+		sourceColumn: p_ctrl
+
+	column verdict
+		dataType: string
+		lineageTag: cea4b0dd-9105-5d3b-9524-ed38f183e43f
+		summarizeBy: none
+		sourceColumn: verdict
+
+	column failed_checks
+		dataType: string
+		lineageTag: 89ed2fdc-65ac-5b61-97c9-4b3ac2c963b1
+		summarizeBy: none
+		sourceColumn: failed_checks
+
+	column placebo_n
+		dataType: int64
+		formatString: #,0
+		lineageTag: 1af99135-7864-5816-94fc-62c78a6789f5
+		summarizeBy: none
+		sourceColumn: placebo_n
+
+	column train_days
+		dataType: int64
+		formatString: #,0
+		lineageTag: 70b1423c-a964-56e6-863f-05f3c0540094
+		summarizeBy: none
+		sourceColumn: train_days
+
 	partition event_effects = m
 		mode: import
 		source =
@@ -97,16 +130,21 @@ table event_effects
 				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				    Typed = Table.TransformColumnTypes(Promoted, {
 				        {"event_id", type text},
+				        {"mode", type text},
 				        {"line", type text},
 				        {"effect", type number},
-				        {"placebo_n", Int64.Type},
 				        {"band_lo", type number},
 				        {"band_hi", type number},
 				        {"p_value", type number},
-				        {"verdict", type text},
-				        {"train_days", Int64.Type},
 				        {"pre_resid", type number},
-				        {"effect_vs_pre", type number}
+				        {"effect_vs_pre", type number},
+				        {"effect_ctrl", type number},
+				        {"band_ctrl", type number},
+				        {"p_ctrl", type number},
+				        {"verdict", type text},
+				        {"failed_checks", type text},
+				        {"placebo_n", Int64.Type},
+				        {"train_days", Int64.Type}
 				    }, "en-US")
 				in
 				    Typed

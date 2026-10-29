@@ -1,0 +1,51 @@
+table lrt3_phases
+	lineageTag: d30c82cd-21b9-511d-91f6-3f6f3fb597aa
+
+	measure 'LRT3 Weekday Riders' = AVERAGE ( lrt3_phases[mean_weekday] )
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: f8eb7f83-9037-599b-8049-5ba7b91827d7
+
+	column phase
+		dataType: string
+		lineageTag: 891d903f-2140-5bbf-8b26-af8ff224692a
+		summarizeBy: none
+		sourceColumn: phase
+		sortByColumn: phase_order
+
+	column phase_order
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 5f886ab2-b28f-5d5b-9189-8343db57c9d1
+		summarizeBy: none
+		sourceColumn: phase_order
+
+	column days
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8cb7b61d-c5cd-5d63-a292-c8e981e495d7
+		summarizeBy: none
+		sourceColumn: days
+
+	column mean_weekday
+		dataType: double
+		formatString: #,0
+		lineageTag: f3bdbfb5-c6bc-54fd-b03f-5dbe1f4e9668
+		summarizeBy: none
+		sourceColumn: mean_weekday
+
+	partition lrt3_phases = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\lrt3_phases.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+				        {"phase", type text},
+				        {"phase_order", Int64.Type},
+				        {"days", Int64.Type},
+				        {"mean_weekday", type number}
+				    }, "en-US")
+				in
+				    Typed
