@@ -3,3 +3,7 @@ rail_lrt_kj,LRT Kelana Jaya,1
 rail_lrt_ampang,LRT Ampang/Sri Petaling,2
 rail_mrt_kajang,MRT Kajang,3
 rail_monorail,KL Monorail,4
+rail_mrt_pjy,MRT Putrajaya,5
+rail_lrt_shah_alam,LRT Shah Alam,6
+rail_komuter,KTM Komuter (Klang Valley),7
+rail_komuter_utara,KTM Komuter Utara,8

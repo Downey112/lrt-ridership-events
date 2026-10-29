@@ -1,0 +1,42 @@
+table new_lines_monthly
+	lineageTag: 8aaa9444-a707-53f0-8494-d4838d4f06f2
+
+	measure 'New Line Riders per Day' = AVERAGE ( new_lines_monthly[mean_daily] )
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 33e6e15f-3722-510f-86cb-b5debf7d00e6
+
+	column month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: a4fb8419-7629-5b1c-9031-f2fd29a9988a
+		summarizeBy: none
+		sourceColumn: month
+
+	column line
+		dataType: string
+		isHidden
+		lineageTag: f6f11253-4bad-5a44-9a2c-b1950fef37fb
+		summarizeBy: none
+		sourceColumn: line
+
+	column mean_daily
+		dataType: double
+		formatString: #,0
+		lineageTag: 231e1c29-a857-503e-9747-5adc82effb3e
+		summarizeBy: none
+		sourceColumn: mean_daily
+
+	partition new_lines_monthly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\new_lines_monthly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+				        {"month", type date},
+				        {"line", type text},
+				        {"mean_daily", type number}
+				    }, "en-US")
+				in
+				    Typed

@@ -3,9 +3,9 @@
   "name": "table_events",
   "position": {
     "x": 360,
-    "y": 480,
+    "y": 432,
     "z": 21000,
-    "height": 216,
+    "height": 264,
     "width": 588,
     "tabOrder": 21000
   },
@@ -44,21 +44,6 @@
               "queryRef": "events.dates",
               "nativeQueryRef": "dates",
               "displayName": "Dates"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "events"
-                    }
-                  },
-                  "Property": "note"
-                }
-              },
-              "queryRef": "events.note",
-              "nativeQueryRef": "note",
-              "displayName": "Note"
             }
           ]
         }
@@ -127,7 +112,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "190D"
+                  "Value": "360D"
                 }
               }
             }
@@ -141,27 +126,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "110D"
+                  "Value": "180D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "events.dates"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "220D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "events.note"
           }
         }
       ]
@@ -226,7 +197,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Table of the three events tested, with dates and notes.'"
+                  "Value": "'Table of the six events tested, with dates.'"
                 }
               }
             }

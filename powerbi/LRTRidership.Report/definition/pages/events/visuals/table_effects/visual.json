@@ -6,7 +6,7 @@
     "y": 168,
     "z": 7000,
     "height": 528,
-    "width": 560,
+    "width": 640,
     "tabOrder": 7000
   },
   "visual": {
@@ -53,6 +53,21 @@
                       "Entity": "event_effects"
                     }
                   },
+                  "Property": "band_hi"
+                }
+              },
+              "queryRef": "event_effects.band_hi",
+              "nativeQueryRef": "band_hi",
+              "displayName": "Normal noise"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "event_effects"
+                    }
+                  },
                   "Property": "effect_vs_pre"
                 }
               },
@@ -68,12 +83,12 @@
                       "Entity": "event_effects"
                     }
                   },
-                  "Property": "band_hi"
+                  "Property": "effect_ctrl"
                 }
               },
-              "queryRef": "event_effects.band_hi",
-              "nativeQueryRef": "band_hi",
-              "displayName": "Normal noise"
+              "queryRef": "event_effects.effect_ctrl",
+              "nativeQueryRef": "effect_ctrl",
+              "displayName": "vs Komuter Utara"
             },
             {
               "field": {
@@ -98,12 +113,12 @@
                       "Entity": "event_effects"
                     }
                   },
-                  "Property": "p_value"
+                  "Property": "failed_checks"
                 }
               },
-              "queryRef": "event_effects.p_value",
-              "nativeQueryRef": "p_value",
-              "displayName": "p"
+              "queryRef": "event_effects.failed_checks",
+              "nativeQueryRef": "failed_checks",
+              "displayName": "Check failed"
             }
           ]
         }
@@ -172,7 +187,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "150D"
+                  "Value": "118D"
                 }
               }
             }
@@ -186,7 +201,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "58D"
+                  "Value": "54D"
                 }
               }
             }
@@ -200,21 +215,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "74D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "event_effects.effect_vs_pre"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "64D"
+                  "Value": "56D"
                 }
               }
             }
@@ -228,7 +229,35 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "122D"
+                  "Value": "66D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "event_effects.effect_vs_pre"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "66D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "event_effects.effect_ctrl"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "98D"
                 }
               }
             }
@@ -242,13 +271,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "44D"
+                  "Value": "118D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "event_effects.p_value"
+            "metadata": "event_effects.failed_checks"
           }
         }
       ]
@@ -305,7 +334,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Normal noise = 95% of fake ''effects'' at 155 ordinary dates fall inside ± this · p = share of fakes at least this big'"
+                  "Value": "'Normal noise = 95% of fake ''effects'' at 120–145 ordinary dates (2023–26) fall inside ± this'"
                 }
               }
             }
@@ -318,7 +347,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Table of the estimated effect on each line for the selected event, with the normal-noise band.'"
+                  "Value": "'Table of the estimated effect on each line for the selected event, with the normal-noise band and checks.'"
                 }
               }
             }

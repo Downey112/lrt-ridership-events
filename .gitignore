@@ -5,3 +5,4 @@ __pycache__/
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
 assets/kelana_jaya_lrt_original.jpg
+.claude/

@@ -5,6 +5,10 @@
     "#E57200",
     "#047940",
     "#7AB800",
+    "#D9A400",
+    "#0096A6",
+    "#1F4E9C",
+    "#8B95A5",
     "#5B6475",
     "#98A2B3"
   ],
@@ -188,6 +192,35 @@
                 "color": "#5B6475"
               }
             }
+          }
+        ]
+      }
+    },
+    "clusteredColumnChart": {
+      "*": {
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#5B6475"
+              }
+            },
+            "fontSize": 9,
+            "fontFamily": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+            "showAxisTitle": false
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#5B6475"
+              }
+            },
+            "fontSize": 9,
+            "fontFamily": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+            "showAxisTitle": false,
+            "show": false
           }
         ]
       }

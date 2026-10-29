@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "chart_daily",
   "position": {
-    "x": 592,
+    "x": 672,
     "y": 168,
     "z": 8000,
     "height": 528,
-    "width": 664,
+    "width": 584,
     "tabOrder": 8000
   },
   "visual": {
@@ -63,6 +63,21 @@
               "queryRef": "event_daily.Expected Riders",
               "nativeQueryRef": "Expected Riders",
               "displayName": "Expected without the event"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "event_daily"
+                    }
+                  },
+                  "Property": "Expected via Komuter Utara"
+                }
+              },
+              "queryRef": "event_daily.Expected via Komuter Utara",
+              "nativeQueryRef": "Expected via Komuter Utara",
+              "displayName": "Expected via Komuter Utara"
             }
           ]
         }
@@ -122,6 +137,24 @@
           "selector": {
             "metadata": "event_daily.Expected Riders"
           }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F4E9C'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "event_daily.Expected via Komuter Utara"
+          }
         }
       ],
       "lineStyles": [
@@ -137,6 +170,20 @@
           },
           "selector": {
             "metadata": "event_daily.Expected Riders"
+          }
+        },
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dotted'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "event_daily.Expected via Komuter Utara"
           }
         }
       ],
@@ -213,7 +260,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Expected = same line''s weekday, holiday and trend pattern from the weeks around the event'"
+                  "Value": "'Expected = the line''s weekday, holiday, school-break and trend pattern from the weeks around the event'"
                 }
               }
             }
